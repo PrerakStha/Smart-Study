@@ -1,0 +1,76 @@
+body {
+  font-family: "Inter", sans-serif;
+  background: #12141a;
+  color: #f2f3f7;
+}
+
+/* LEFT: purple panel */
+.hero { background: linear-gradient(160deg, #8b87ff 0%, #6b3df2 45%, #6a3cf0 100%); }
+
+.logo-mark {
+  border-radius: 11px;
+  background: #fff;
+  color: #6e5ce6;
+  font-weight: 700;
+  font-size: 22px;
+}
+.logo-text { font-size: 24px; font-weight: 700; color: #fff; }
+.hero h1 { font-size: clamp(26px, 2.9vw, 52px); line-height: 1.24; font-weight: 700; color: #fff; }
+.hero li { color: #edebff; font-size: 17px; font-weight: 500; }
+.dot { border-radius: 50%; background: #fff; }
+.hero-footer { font-size: 13px; font-weight: 500; color: #d9d6ff; }
+
+/* RIGHT: form */
+.tabs { background: #0e1015; border-radius: 12px; }
+.tab {
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #9ca3b5;
+  font: 500 14px "Inter", sans-serif;
+  cursor: pointer;
+}
+.tab.active { background: #222735; color: #f2f3f7; font-weight: 600; }
+
+h2 { font-size: 26px; font-weight: 700; }
+.sub { font-size: 14px; color: #9ca3b5; line-height: 1.5; }
+
+label { font-size: 13px; font-weight: 500; color: #9ca3b5; }
+input, select {
+  background: #222735;
+  border: 1px solid #2d3342;
+  border-radius: 10px;
+  color: #f2f3f7;
+  font: 400 14px "Inter", sans-serif;
+  outline: none;
+}
+input::placeholder { color: #6b7285; }
+input:focus, select:focus { border-color: #8b87f2; }
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%239CA3B5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.error { color: #f0787a; font-size: 14px; }
+.submit {
+  border: none;
+  border-radius: 10px;
+  background: #8b87f2;
+  color: #14122e;
+  font: 600 15px "Inter", sans-serif;
+  cursor: pointer;
+}
+.submit:hover { background: #9a96f5; }
+
+.switch { font-size: 13px; color: #9ca3b5; }
+.switch button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8b87f2;
+  font: 600 13px "Inter", sans-serif;
+}
