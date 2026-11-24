@@ -2,7 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import AuthPage from './pages/AuthPage';
 import WorkspacePage from './pages/WorkspacePage';
-import ProtectedRoute, { FullScreenSpinner } from './components/layout/layout/ProtectedRoute';
+import ComingSoonPage from './pages/ComingSoonPage';
+import AppLayout from './components/layout/AppLayout';
+import ProtectedRoute, { FullScreenSpinner } from './components/layout/ProtectedRoute';
 
 // Logged-in users shouldn't see the login page again
 function PublicOnlyRoute({ children }) {
@@ -15,7 +17,16 @@ export default function App() {
   return (
     <Routes>
       <Route path="/auth" element={<PublicOnlyRoute><AuthPage /></PublicOnlyRoute>} />
-      <Route path="/workspace" element={<ProtectedRoute><WorkspacePage /></ProtectedRoute>} />
+
+      {/* Everything inside here needs a login and gets the navbar */}
+      <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+        <Route path="/workspace" element={<WorkspacePage />} />
+        <Route path="/quizzes" element={<ComingSoonPage title="Quizzes" />} />
+        <Route path="/flashcards" element={<ComingSoonPage title="Flashcards" />} />
+        <Route path="/dashboard" element={<ComingSoonPage title="Dashboard" />} />
+        <Route path="/documents/:id/summary" element={<ComingSoonPage title="Summary" />} />
+      </Route>
+
       <Route path="/" element={<Navigate to="/workspace" replace />} />
       <Route path="*" element={<Navigate to="/workspace" replace />} />
     </Routes>
