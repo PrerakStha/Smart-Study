@@ -3,6 +3,7 @@ import { useAuth } from './hooks/useAuth';
 import AuthPage from './pages/AuthPage';
 import WorkspacePage from './pages/WorkspacePage';
 import ComingSoonPage from './pages/ComingSoonPage';
+import DashboardPage from './pages/DashboardPage';
 import AppLayout from './components/layout/AppLayout';
 import ProtectedRoute, { FullScreenSpinner } from './components/layout/ProtectedRoute';
 
@@ -23,7 +24,7 @@ export default function App() {
         <Route path="/workspace" element={<WorkspacePage />} />
         <Route path="/quizzes" element={<ComingSoonPage title="Quizzes" />} />
         <Route path="/flashcards" element={<ComingSoonPage title="Flashcards" />} />
-        <Route path="/dashboard" element={<ComingSoonPage title="Dashboard" />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/documents/:id/summary" element={<ComingSoonPage title="Summary" />} />
       </Route>
 
