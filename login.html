@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Study - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="position.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- LEFT: purple panel -->
+  <section class="hero">
+    <div class="logo">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">Smart Study</span>
+    </div>
+
+    <div>
+      <h1>Upload your notes. Get summaries, quizzes and flashcards in seconds.</h1>
+      <ul>
+        <li><span class="dot"></span>AI-generated study material</li>
+        <li><span class="dot"></span>Track weak topics</li>
+        <li><span class="dot"></span>Built for students &amp; teachers</li>
+      </ul>
+    </div>
+
+    <img class="hero-img" src="books.png" alt="Books illustration" />
+    <p class="hero-footer">Smart Study</p>
+  </section>
+
+  <!-- RIGHT: form -->
+  <section class="panel">
+    <div class="card">
+      <div class="tabs">
+        <button class="tab active" id="tab-login" type="button">Login</button>
+        <button class="tab" id="tab-register" type="button">Register</button>
+      </div>
+
+      <h2 id="title">Welcome back</h2>
+      <p class="sub" id="subtitle">Sign in to continue studying.</p>
+
+      <form id="form">
+        <div class="field hidden" id="name-field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" placeholder="Your full name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" value="student@college.edu.np" />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" value="1234567890" />
+        </div>
+
+        <div class="field hidden" id="confirm-field">
+          <label for="confirm">Confirm password</label>
+          <input type="password" id="confirm" placeholder="Enter your password again" />
+        </div>
+
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </div>
+
+        <p class="error" id="error"></p>
+        <button class="submit" id="submit" type="submit">Sign in</button>
+      </form>
+
+      <p class="switch">
+        <span id="switch-text">New here?</span>
+        <button type="button" id="switch-btn">Create an account</button>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const tabLogin = document.getElementById("tab-login");
+    const tabRegister = document.getElementById("tab-register");
+    const title = document.getElementById("title");
+    const subtitle = document.getElementById("subtitle");
+    const nameField = document.getElementById("name-field");
+    const confirmField = document.getElementById("confirm-field");
+    const submitBtn = document.getElementById("submit");
+    const switchText = document.getElementById("switch-text");
+    const switchBtn = document.getElementById("switch-btn");
+    const errorBox = document.getElementById("error");
+    const form = document.getElementById("form");
+
+    let mode = "login";
+
+    function setMode(newMode) {
+      mode = newMode;
+      errorBox.textContent = "";
+      const isLogin = mode === "login";
+
+      tabLogin.classList.toggle("active", isLogin);
+      tabRegister.classList.toggle("active", !isLogin);
+      nameField.classList.toggle("hidden", isLogin);
+      confirmField.classList.toggle("hidden", isLogin);
+
+      title.textContent = isLogin ? "Welcome back" : "Create your account";
+      subtitle.textContent = isLogin
+        ? "Sign in to continue studying."
+        : "Students and teachers sign up here. Your role is set at registration.";
+      submitBtn.textContent = isLogin ? "Sign in" : "Create account";
+      switchText.textContent = isLogin ? "New here?" : "Already have an account?";
+      switchBtn.textContent = isLogin ? "Create an account" : "Sign in";
+    }
+
+    tabLogin.onclick = () => setMode("login");
+    tabRegister.onclick = () => setMode("register");
+    switchBtn.onclick = () => setMode(mode === "login" ? "register" : "login");
+
+    form.onsubmit = function (e) {
+      e.preventDefault();
+      errorBox.textContent = "";
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      const role = document.getElementById("role").value;
+
+      if (!email || !password) {
+        errorBox.textContent = "Please enter your email and password.";
+        return;
+      }
+      if (mode === "register") {
+        if (!name) { errorBox.textContent = "Please enter your full name."; return; }
+        if (password.length < 6) { errorBox.textContent = "Password must be at least 6 characters."; return; }
+        if (password !== confirm) { errorBox.textContent = "Passwords do not match."; return; }
+      }
+
+      // TODO: send to backend later with fetch()
+      console.log(mode, { name, email, password, role });
+    };
+  </script>
+</body>
+</html>

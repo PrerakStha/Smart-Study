@@ -1,0 +1,67 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { min-height: 100vh; display: flex; }
+
+/* LEFT: purple panel */
+.hero {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 64px clamp(32px, 5vw, 72px);
+  position: relative;
+  overflow: hidden;
+}
+.hero > * { position: relative; z-index: 1; }
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero h1 { max-width: 100%; }
+.hero ul { list-style: none; margin-top: 28px; }
+.hero li { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.dot { width: 10px; height: 10px; }
+
+/* books picture: bottom-right corner of the purple panel */
+.hero .hero-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 0;
+}
+
+/* RIGHT: form */
+.panel {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.card { width: 64%; min-width: 300px; }
+
+.tabs { display: flex; gap: 4px; padding: 4px; margin-bottom: 20px; }
+.tab { flex: 1; padding: 11px 0; }
+
+h2 { margin-bottom: 8px; }
+.sub { margin-bottom: 20px; }
+
+.field { margin-bottom: 20px; }
+label { display: block; margin-bottom: 8px; }
+input, select { width: 100%; height: 46px; padding: 0 14px; }
+
+.error { margin-bottom: 16px; }
+.submit { width: 100%; padding: 14px 0; }
+.switch { text-align: center; margin-top: 20px; }
+
+.hidden { display: none; }
+
+@media (max-width: 900px) {
+  .hero { display: none; }
+}
